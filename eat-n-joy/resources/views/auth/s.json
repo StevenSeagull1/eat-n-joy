@@ -1,0 +1,23 @@
+{
+    "bestelling": {
+      "id": 1,
+      "items": [
+        {
+          "naam": "Ham en kaas sandwich",
+          "prijs_per_stuk": 4.99,
+          "aantal_gekocht": 3
+        },
+        {
+          "naam": "Tonijnsalade sandwich",
+          "prijs_per_stuk": 5.49,
+          "aantal_gekocht": 2
+        },
+        {
+          "naam": "Croissant",
+          "prijs_per_stuk": 2.99,
+          "aantal_gekocht": 5
+        }
+      ],
+      "gekocht_door": "John Doe"
+    }
+  }
