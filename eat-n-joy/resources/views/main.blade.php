@@ -14,7 +14,6 @@
             display:flex;
         }
         body{
-            background-image: url("images/bg.png");
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -89,62 +88,25 @@
         <img id='foto'src='images/vergrootglas.png'>
         <input id='search'type="text" placeholder="Search..">
     </div>
+
     <div class="container">
+           
         <div class="grid">
+             @foreach ($products as $prod)
             <div class="grid-item">
                 <div class="grid-img">
                     <img src="images/brood.png" alt="Afbeelding 1">
                 </div>
                 <div class="product-info">
-                    <h3>jumbo brood</h3>
-                    <p>Prijs: €10,00</p>
+                <h3>{{$prod['productnaam']}}</h3>
+                    <p>{{$prod['prijs']}}</p>
                 </div>
             </div>
-            <div class="grid-item">
-                <div class="grid-img">
-                    <img src="images/brood.png" alt="Afbeelding 2">
-                </div>
-                <div class="product-info">
-                    <h3>jumbo brood</h3>
-                    <p>Prijs: €10,00</p>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="grid-img">
-                    <img src="images/brood.png" alt="Afbeelding 3">
-                </div>
-                <div class="product-info">
-                    <h3>jumbo brood</h3>
-                    <p>Prijs: €10,00</p>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="grid-img">
-                    <img src="images/brood.png" alt="Afbeelding 4">
-                </div>
-                <div class="product-info">
-                    <h3>jumbo brood</h3>
-                    <p>Prijs: €10,00</p>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="grid-img">
-                    <img src="images/brood.png" alt="Afbeelding 5">
-                </div>
-                <div class="product-info">
-                    <h3>jumbo brood</h3>
-                    <p>Prijs: €10,00</p>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="grid-img">
-                    <img src="images/brood.png" alt="Afbeelding 6">
-                </div>
-                <div class="product-info">
-                    <h3>jumbo brood</h3>
-                    <p>Prijs: €10,00</p>
-                </div>
-            </div>
+            @endforeach
         </div>
+        
     </div>
+    
+    
+    
 </x-app-layout>
