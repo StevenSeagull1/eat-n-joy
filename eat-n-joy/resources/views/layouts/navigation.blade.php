@@ -42,7 +42,7 @@ button{
                     </x-slot>
                 </x-dropdown>
             </div>
-<a href='/dashboard'><img src="images/eat-n-joy-logo.svg" style="margin-right: auto; display: block; margin-left: auto;height:200%; margin-top:-2%; max-width:100%;">
+<img src="images/eat-n-joy-logo.svg" style="margin-right: auto; display: block; margin-left: auto;height:200%; margin-top:-2%; max-width:100%;">
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
                 <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">

@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\Routing\Loader\Configurator\Traits\RouteTrait;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect(route('login'));
 });
+
+Route::get('main',[ProductsController::class,'show']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
