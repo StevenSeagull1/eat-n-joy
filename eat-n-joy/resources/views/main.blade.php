@@ -1,4 +1,53 @@
 <x-app-layout>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var input = document.getElementById("myInput");
+        var gridItems = document.querySelectorAll(".grid-item");
+        var categories = document.querySelectorAll(".categorie");
+
+        // Voeg een klikgebeurtenis toe aan elke categorie
+        categories.forEach(function (category) {
+            category.addEventListener("click", function () {
+                var selectedCategory = category.getAttribute("data-category");
+
+                // Verwijder eerst alle huidige filterklassen van de categorieën
+                categories.forEach(function (cat) {
+                    cat.classList.remove("active");
+                });
+
+                // Markeer de geselecteerde categorie
+                category.classList.add("active");
+
+                // Filter producten op basis van de geselecteerde categorie
+                gridItems.forEach(function (item) {
+                    var productCategory = item.getAttribute("data-category");
+
+                    if (selectedCategory === "alles" || selectedCategory === productCategory) {
+                        item.style.display = "block";
+                    } else {
+                        item.style.display = "none";
+                    }
+                });
+            });
+        });
+
+        // Voeg een invoergebeurtenis toe aan de zoekbalk
+        input.addEventListener("input", function () {
+            var filter = input.value.toLowerCase();
+
+            gridItems.forEach(function (item) {
+                var productName = item.querySelector("h3").textContent.toLowerCase();
+
+                if (productName.includes(filter)) {
+                    item.style.display = "block";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        });
+    });
+</script>
+
     <style>
         .categorie{
             border: #F6A30F 5px solid;
@@ -18,6 +67,7 @@
             margin: 0;
             padding: 0;
             background-color: #f0f0f0;
+            background-image: url("images/achtergrond.svg");
         }
         .container {
             max-width: 1200px;
@@ -67,9 +117,11 @@
         .search{
             text-align:center;
         }
-        #search{
+        #myInput{
             border:solid 1px #ccc;
+            color:#7B7B7B;
             border-radius:40px;
+            width:40%
         }
         #foto{
             margin-left:30%;
@@ -78,22 +130,22 @@
             /* height:50%; */
         }
     </style>
-    <div class="item-cato">
-        <div class="categorie">alles</div>
-        <div class="categorie">broodjes</div>
-        <div class="categorie">drank</div>
-        <div class="categorie">snacks</div>
-    </div>
+   <div class="item-cato">
+    <div class="categorie" data-category="alles">alles</div>
+    <div class="categorie" data-category="1">broodjes</div>
+    <div class="categorie" data-category="2">drank</div>
+    <div class="categorie" data-category="3">snacks</div>
+</div>
     <div class="search">
         <img id='foto'src='images/vergrootglas.png'>
-        <input id='search'type="text" placeholder="Search..">
+        <input id='myInput'type="text" placeholder="Search..">
     </div>
 
     <div class="container">
            
         <div class="grid">
              @foreach ($products as $prod)
-            <div class="grid-item">
+            <div data-category='{{$prod["categorie_categorieid"]}}' class="grid-item">
                 <div class="grid-img">
                     <img src="images/brood.png" alt="Afbeelding 1">
                 </div>
