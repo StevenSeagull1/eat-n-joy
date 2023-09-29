@@ -147,7 +147,7 @@
              @foreach ($products as $prod)
             <div data-category='{{$prod["categorie_categorieid"]}}' class="grid-item">
                 <div class="grid-img">
-                    <img src="images/brood.png" alt="Afbeelding 1">
+                    <img src="images/prod_img{{$prod['product_image']}}" alt="Afbeelding 1">
                 </div>
                 <div class="product-info">
                 <h3>{{$prod['productnaam']}}</h3>
