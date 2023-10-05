@@ -1,1 +1,1 @@
-<img src="{{ asset('images/eat-n-joy-logo.svg') }}" width='200px'>
+<img src="{{ asset('images/eat-n-joy-logo.svg') }}" width='64'>
