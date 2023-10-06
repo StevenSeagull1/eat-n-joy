@@ -84,17 +84,18 @@
     var popup = document.getElementById("popup");
     var popupContent = document.getElementById("popup-content");
 
-        // zorg ervoor dat "alles" wautomatisch is geselecteerd
-        var allesCategorie = document.querySelector(".categorie[data-category='alles']");
-        allesCategorie.classList.add("active");
-        allesCategorie.style.border = "5px solid #7F4E0E";
-
+    
     // Voeg de gewenste inhoud toe aan de popupContent div
     popupContent.innerHTML = "<h2>Dit is de pop-up inhoud</h2><p>Hier kan je tekst, afbeeldingen, formulieren, enzovoort toevoegen.</p>";
-
+    
     popup.style.display = "block";
     document.body.classList.add("blur-background");
 }
+
+// zorg ervoor dat "alles" wautomatisch is geselecteerd
+var allesCategorie = document.querySelector(".categorie[data-category='alles']");
+allesCategorie.classList.add("active");
+allesCategorie.style.border = "5px solid #7F4E0E";
 
 // Rest van je code...
 
@@ -145,8 +146,8 @@ winkelwagenIcon.addEventListener("click", showOverlay);
 </script>
 
     <style>
-       
-        .popup-container {
+    /*region pop up*/
+    .popup-container {
         display: none;
         position: fixed;
         top: 50%;
@@ -159,7 +160,6 @@ winkelwagenIcon.addEventListener("click", showOverlay);
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
         padding: 20px;
         max-width:30%;
-        
     }
 
     .popup-content {
@@ -184,127 +184,127 @@ winkelwagenIcon.addEventListener("click", showOverlay);
         margin: 10px 0;
     }
     
-        .close-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 24px;
-            cursor: pointer;
-        }
-        .categorie{
-            border: #F6A30F 5px solid;
-            border-radius: 40px;
-            margin-left:8%;
-            margin-top: 1%;
-            font-weight:900;
-            height:10%;
-            width:15%;
-            text-align:center;
-            font-size:3vw;
-            cursor:pointer;
-        }
+    .close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+    /*endregion*/
 
-        .categorie.active {
-            border: 5px solid red; /* Pas de gewenste borderkleur aan */
-        }
+    /*region categorie*/
+    .categorie{
+        border: #F6A30F 5px solid;
+        border-radius: 40px;
+        margin-left:8%;
+        margin-top: 1%;
+        font-weight:900;
+        height:10%;
+        width:15%;
+        text-align:center;
+        font-size:3vw;
+        cursor:pointer;
+    }
 
-        .item-cato{
-            display:flex;
-        }
+    .item-cato{
+        display:flex;
+    }
+    /*endregion*/
 
-        body{
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #fff;
-        }
+    body{
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #fff;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            margin-top:5%;
-        }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        margin-top:5%;
+    }
 
+    /*region Grid opmaak*/
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
 
-        /* Grid opmaak */
+    .grid-item {
+        background-color: #fff;
+        padding: 20px;
+        border: 5px solid #7F4E0E;
+        border-radius: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Verticaal centreren */
+        text-align: center;
+        position: relative;
+        margin-top:20%;
+        cursor:pointer;
+    }
+
+    .grid-item img {
+        max-width: 100%;
+        height: auto;
+        margin-top: -40%;
+        
+    }
+    /*endregion*/
+
+    /*region product*/
+    .product-info {
+        font-weight:900;
+        font-size: 140%;
+    }
+
+    .product-info p{
+        white-space: nowrap;
+    }
+    /*endregion*/
+    
+    /*region media queries*/
+    @media (max-width: 768px) {
         .grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
         }
+    }
 
-        .grid-item {
-            background-color: #fff;
-            padding: 20px;
-            border: 5px solid #7F4E0E;
-            border-radius: 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Verticaal centreren */
-            text-align: center;
-            position: relative;
-            margin-top:20%;
-            cursor:pointer;
+    @media (max-width: 576px) {
+        .grid {
+            grid-template-columns: 1fr;
         }
+    }
+    /*endregion*/
 
-        .grid-item img {
-            max-width: 100%;
-            height: auto;
-            margin-top: -40%;
-            
-        }
-        .categorie.active {
-            border: #94580E 5px solid;
-        }
+    /*region search*/
+    .search{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin-top: 2%;
+        margin-bottom: 0;
+    }
 
-        .product-info {
-            font-weight:900;
-            font-size: 140%;
-        }
+    #myInput{
+        border:solid 5px #48494B;
+        color:#7B7B7B;
+        border-radius:40px;
+        width:40%;
+        padding: 10px;
+    }
 
-        .product-info p{
-            white-space: nowrap;
-        }
-        @media (max-width: 768px) {
-            .grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 576px) {
-            .grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .search{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            margin-top: 2%;
-            margin-bottom: 0;
-        }
-
-        #myInput{
-            border:solid 5px #48494B;
-            color:#7B7B7B;
-            border-radius:40px;
-            width:40%;
-            padding: 10px;
-        }
-
-        #foto{
-            max-width: 100%;
-            height: auto;
-            margin-right: 15px;
-        }
-
-        .grid-item img{
-            /* height:50%; */
-        }
-    </style>
+    #foto{
+        max-width: 100%;
+        height: auto;
+        margin-right: 15px;
+    }
+    /*endregion*/
+</style>
 
 <div id='winkelwagen' onclick='toggleMenu()'>  
     <img src="images/icons/winkelwagen.svg" style="height:auto; width:7%; float:right;">
@@ -345,6 +345,7 @@ winkelwagenIcon.addEventListener("click", showOverlay);
 
 </x-app-layout>
 </body>
+
 <div class="popup-container" id="popup">
     <div class="popup-content">
         <span class="close-button" onclick="closePopup()">&times;</span>
