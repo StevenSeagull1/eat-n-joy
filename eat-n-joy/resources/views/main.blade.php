@@ -1,6 +1,10 @@
 <x-app-layout>
-<script>
-    function openPopup(productnaam, prijs) {
+
+    
+     <script>
+
+var winkelwagen = [];
+function openPopup(productnaam, prijs) {
         var popup = document.getElementById("popup");
         var popupContent = document.getElementById("popup-content");
         var body = document.querySelector("body");
@@ -26,29 +30,15 @@
 
         popup.style.display = "none";
     }
-
-    // Voeg event listeners toe aan de grid-items om de pop-up te openen
-    var gridItems = document.querySelectorAll(".grid-item");
-
-    gridItems.forEach(function (item) {
-        item.addEventListener("click", function () {
-            var productnaam = item.querySelector("h3").textContent;
-            var prijs = item.querySelector("p").textContent;
-            openPopup(productnaam, prijs);
-        });
-    });
-
-    // Voeg event listeners toe aan de grid-items om de pop-up te openen
-    var gridItems = document.querySelectorAll(".grid-item");
-
-    gridItems.forEach(function (item) {
-        item.addEventListener("click", function () {
-            var productnaam = item.querySelector("h3").textContent;
-            var prijs = item.querySelector("p").textContent;
-            openPopup(productnaam, prijs);
-        });
-    });
-    document.addEventListener("DOMContentLoaded", function () {
+var button = document.getElementById("button")
+function addToCart(button) {
+    var gridItem = button.closest(".grid-item");
+    var productnaam = gridItem.querySelector("h3").textContent;
+    var prijs = gridItem.querySelector("p").textContent;
+    winkelwagen.push({ productnaam: productnaam, prijs: prijs });
+    console.log(winkelwagen);
+}
+document.addEventListener("DOMContentLoaded", function () {
         var input = document.getElementById("myInput");
         var gridItems = document.querySelectorAll(".grid-item");
         var categories = document.querySelectorAll(".categorie");
@@ -81,10 +71,16 @@
         function showOverlay() {
     var popup = document.getElementById("popup");
     var popupContent = document.getElementById("popup-content");
-
+            console.log(winkelwagen[0].productnaam)
     // Voeg de gewenste inhoud toe aan de popupContent div
-    popupContent.innerHTML = "<h2>Dit is de pop-up inhoud</h2><p>Hier kan je tekst, afbeeldingen, formulieren, enzovoort toevoegen.</p>";
-
+    popupContent.innerHTML = ''
+        for (let i = 0; i < winkelwagen.length; i++) {
+            popupContent.innerHTML += winkelwagen[i].productnaam
+            popupContent.innerHTML += winkelwagen[i].prijs
+            if (i < winkelwagen.length - 1) {
+    popupContent.innerHTML += "<br>"; // Voeg een nieuwe regel toe tussen de items
+  }
+    }
     popup.style.display = "block";
     document.body.classList.add("blur-background");
 }
@@ -117,7 +113,6 @@ winkelwagenIcon.addEventListener("click", showOverlay);
         item.addEventListener("click", function () {
             var productnaam = item.querySelector("h3").textContent;
             var prijs = item.querySelector("p").textContent;
-            openPopup(productnaam, prijs);
         });
     });
         // Voeg een invoergebeurtenis toe aan de zoekbalk
@@ -136,8 +131,7 @@ winkelwagenIcon.addEventListener("click", showOverlay);
         });
     });
 </script>
-
-    <style>
+<style>
        
         .popup-container {
         display: none;
@@ -151,7 +145,7 @@ winkelwagenIcon.addEventListener("click", showOverlay);
         border-radius: 40px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
         padding: 20px;
-        max-width:30%;
+        max-width:100%;
         
     }
 
@@ -267,14 +261,11 @@ winkelwagenIcon.addEventListener("click", showOverlay);
         #foto{
             margin-left:30%;
         }
-        body.blur-background {
-        /* filter: blur(5px); Pas het gewenste vervagingseffect aan */
-    }
     </style>
     <body>
-<div id='winkelwagen' onclick='toggleMenu()'>  
+<div id='winkelwagen'>  
     <img src="images/icons/winkelwagen.svg" style="height:auto; width:7%; float:right;">
-</div>
+    </div>
     <div class="item-cato">
     <div class="categorie" data-category="alles">alles</div>
     <div     class="categorie" data-category="1">broodjes</div>
@@ -287,37 +278,29 @@ winkelwagenIcon.addEventListener("click", showOverlay);
     </div>
 
     <div class="container">
-           
         <div class="grid">
-             @foreach ($products as $prod)
-            <div data-category='{{$prod["categorie_categorieid"]}}' class="grid-item">
-                <div class="grid-img">
-                    <img src="images/brood.png" alt="Afbeelding 1">
+             <!-- Voeg dynamisch producten toe -->
+            @foreach ($products as $prod)
+                <div data-category='{{$prod["categorie_categorieid"]}}' class="grid-item">
+                    <div class="grid-img">
+                        <img src="images/brood.png" alt="Afbeelding 1">
+                    </div>
+                    <div class="product-info">
+                        <h3>{{$prod['productnaam']}}</h3>
+                        <p>{{$prod['prijs']}} 🏷</p>
+                        <button onclick="addToCart(this)">Voeg toe</button>
+                    </div>
                 </div>
-                <div class="product-info">
-                <h3>{{$prod['productnaam']}}</h3>
-                    <p>{{$prod['prijs']}} 🏷</p>
-                </div>
-                <!-- <img src="images/icons/prijskaartje.svg" style="width:10%; height:auto;"> -->
-            </div>
             @endforeach
         </div>
-        
     </div>
-    
-    
+    <div class="popup-container" id="popup">
+    <div class="popup-content">
+        <span class="close-button" onclick="closePopup()">&times;</span>
+        <div id="popup-content"></div>
+    </div>
+</div>
+   
 
-</x-app-layout>
 </body>
-<div class="popup-container" id="popup">
-    <div class="popup-content">
-        <span class="close-button" onclick="closePopup()">&times;</span>
-        <div id="popup-content"></div>
-    </div>
-</div>
-<div class="popup-container" id="popup">
-    <div class="popup-content">
-        <span class="close-button" onclick="closePopup()">&times;</span>
-        <div id="popup-content"></div>
-    </div>
-</div>
+</x-app-layout>
