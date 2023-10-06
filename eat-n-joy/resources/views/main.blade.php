@@ -170,7 +170,7 @@
 </div>
 
     <div class="search">
-        <img id="foto" src='images/vergrootglas.png'>
+        <img id="foto" src='images/vergrootglas.svg'>
         <input id="myInput" type="text" placeholder="Search..">
     </div>
 
