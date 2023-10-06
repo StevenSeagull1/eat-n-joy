@@ -1,5 +1,53 @@
 <x-app-layout>
 <script>
+    function openPopup(productnaam, prijs) {
+        var popup = document.getElementById("popup");
+        var popupContent = document.getElementById("popup-content");
+        var body = document.querySelector("body");
+
+        // Voeg de blur-klasse toe aan de body
+        body.classList.add("blur-background");
+
+        popupContent.innerHTML = `
+            <img src="images/brood.png" alt="Afbeelding 1">
+            <h3>${productnaam}</h3>
+            <p>${prijs}</p>
+        `;
+
+        popup.style.display = "block";
+    }
+
+    function closePopup() {
+        var popup = document.getElementById("popup");
+        var body = document.querySelector("body");
+
+        // Verwijder de blur-klasse van de body
+        body.classList.remove("blur-background");
+
+        popup.style.display = "none";
+    }
+
+    // Voeg event listeners toe aan de grid-items om de pop-up te openen
+    var gridItems = document.querySelectorAll(".grid-item");
+
+    gridItems.forEach(function (item) {
+        item.addEventListener("click", function () {
+            var productnaam = item.querySelector("h3").textContent;
+            var prijs = item.querySelector("p").textContent;
+            openPopup(productnaam, prijs);
+        });
+    });
+
+    // Voeg event listeners toe aan de grid-items om de pop-up te openen
+    var gridItems = document.querySelectorAll(".grid-item");
+
+    gridItems.forEach(function (item) {
+        item.addEventListener("click", function () {
+            var productnaam = item.querySelector("h3").textContent;
+            var prijs = item.querySelector("p").textContent;
+            openPopup(productnaam, prijs);
+        });
+    });
     document.addEventListener("DOMContentLoaded", function () {
         var input = document.getElementById("myInput");
         var gridItems = document.querySelectorAll(".grid-item");
@@ -32,12 +80,53 @@
                 });
             });
         });
+        function showOverlay() {
+    var popup = document.getElementById("popup");
+    var popupContent = document.getElementById("popup-content");
 
         // zorg ervoor dat "alles" wautomatisch is geselecteerd
         var allesCategorie = document.querySelector(".categorie[data-category='alles']");
         allesCategorie.classList.add("active");
         allesCategorie.style.border = "5px solid #7F4E0E";
 
+    // Voeg de gewenste inhoud toe aan de popupContent div
+    popupContent.innerHTML = "<h2>Dit is de pop-up inhoud</h2><p>Hier kan je tekst, afbeeldingen, formulieren, enzovoort toevoegen.</p>";
+
+    popup.style.display = "block";
+    document.body.classList.add("blur-background");
+}
+
+// Rest van je code...
+
+// Voeg een klikgebeurtenis toe aan het winkelwagen.svg-pictogram om de overlay weer te geven
+var winkelwagenIcon = document.querySelector("img[src='images/icons/winkelwagen.svg']");
+winkelwagenIcon.addEventListener("click", showOverlay);
+
+// Voeg een klikgebeurtenis toe aan de knop om de overlay te sluiten
+var closeButton = document.querySelector(".close-button");
+closeButton.addEventListener("click", closePopup);
+
+// Functie om de overlay te verbergen
+function closePopup() {
+    var popup = document.getElementById("popup");
+    popup.style.display = "none";
+    document.body.classList.remove("blur-background"); // Verwijder de klasse om de achtergrondvervaging te verwijderen
+}
+
+// Voeg een klikgebeurtenis toe aan het winkelwagen.svg-pictogram om de overlay weer te geven
+var winkelwagenIcon = document.querySelector("img[src='images/icons/winkelwagen.svg']");
+winkelwagenIcon.addEventListener("click", showOverlay);
+
+    // Voeg event listeners toe aan de grid-items om de pop-up te openen
+    var gridItems = document.querySelectorAll(".grid-item");
+
+    gridItems.forEach(function (item) {
+        item.addEventListener("click", function () {
+            var productnaam = item.querySelector("h3").textContent;
+            var prijs = item.querySelector("p").textContent;
+            openPopup(productnaam, prijs);
+        });
+    });
         // Voeg een invoergebeurtenis toe aan de zoekbalk
         input.addEventListener("input", function () {
             var filter = input.value.toLowerCase();
@@ -56,6 +145,52 @@
 </script>
 
     <style>
+       
+        .popup-container {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        background-color: #fff;
+        border: 5px solid black;
+        border-radius: 40px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        padding: 20px;
+        max-width:30%;
+        
+    }
+
+    .popup-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .popup-content img {
+        max-width: 100%;
+        height: auto;
+        margin-top: -40%; /* Stel de gewenste marge in om de foto uit te laten steken */
+        border-radius: 10px 10px 0 0; /* Voeg afronding aan de bovenkant toe */
+    }
+
+    .popup-content h3 {
+        font-weight: bold;
+    }
+
+    .popup-content p {
+        margin: 10px 0;
+    }
+    
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+        }
         .categorie{
             border: #F6A30F 5px solid;
             border-radius: 40px;
@@ -66,6 +201,7 @@
             width:15%;
             text-align:center;
             font-size:3vw;
+            cursor:pointer;
         }
 
         .categorie.active {
@@ -109,12 +245,17 @@
             text-align: center;
             position: relative;
             margin-top:20%;
+            cursor:pointer;
         }
 
         .grid-item img {
             max-width: 100%;
             height: auto;
             margin-top: -40%;
+            
+        }
+        .categorie.active {
+            border: #94580E 5px solid;
         }
 
         .product-info {
@@ -122,6 +263,9 @@
             font-size: 140%;
         }
 
+        .product-info p{
+            white-space: nowrap;
+        }
         @media (max-width: 768px) {
             .grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -162,6 +306,10 @@
         }
     </style>
 
+<div id='winkelwagen' onclick='toggleMenu()'>  
+    <img src="images/icons/winkelwagen.svg" style="height:auto; width:7%; float:right;">
+</div>
+
 <div class="item-cato">
     <div class="categorie" data-category="alles">ALLES</div>
     <div class="categorie" data-category="1">BROOD</div>
@@ -186,6 +334,7 @@
                 <h3>{{$prod['productnaam']}}</h3>
                     <p>€{{$prod['prijs']}}</p>
                 </div>
+                <!-- <img src="images/icons/prijskaartje.svg" style="width:10%; height:auto;"> -->
             </div>
             @endforeach
         </div>
@@ -193,5 +342,18 @@
     </div>
     
     
-    
+
 </x-app-layout>
+</body>
+<div class="popup-container" id="popup">
+    <div class="popup-content">
+        <span class="close-button" onclick="closePopup()">&times;</span>
+        <div id="popup-content"></div>
+    </div>
+</div>
+<div class="popup-container" id="popup">
+    <div class="popup-content">
+        <span class="close-button" onclick="closePopup()">&times;</span>
+        <div id="popup-content"></div>
+    </div>
+</div>
