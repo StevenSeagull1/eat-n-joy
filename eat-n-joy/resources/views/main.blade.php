@@ -1,7 +1,5 @@
 <x-app-layout>
-
-    
-     <script>
+<script>
 
 var winkelwagen = [];
 function openPopup(productnaam, prijs) {
@@ -137,10 +135,13 @@ winkelwagenIcon.addEventListener("click", showOverlay);
             });
         });
     });
+
 </script>
+
 <style>
-       
-        .popup-container {
+
+    /*region popup*/   
+    .popup-container {
         display: none;
         position: fixed;
         top: 50%;
@@ -153,7 +154,6 @@ winkelwagenIcon.addEventListener("click", showOverlay);
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
         padding: 20px;
         max-width:100%;
-        
     }
 
     .popup-content {
@@ -178,110 +178,156 @@ winkelwagenIcon.addEventListener("click", showOverlay);
         margin: 10px 0;
     }
     
-        .close-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 24px;
-            cursor: pointer;
-        }
-        .categorie{
-            border: #F6A30F 5px solid;
-            border-radius: 40px;
-            margin-left:12%;
-            font-weight:900;
-            height:20%;
-            width:20%;
-            text-align:center;
-            font-size:3vw;
-            cursor:pointer;
-        }
-        .item-cato{
-            display:flex;
-        }
-        body{
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-            background-image: url("images/achtergrond.svg");
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            margin-top:5%;
-        }
-        /* Grid opmaak */
+    .close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+    /*endregion*/
+
+    /*region categorie*/
+    .categorie{
+        border: #F6A30F 5px solid;
+        border-radius: 40px;
+        margin-left:8%;
+        margin-top: 75px;
+        font-weight:900;
+        height:10%;
+        width:15%;
+        text-align:center;
+        font-size:3vw;
+        cursor:pointer;
+    }
+    
+    .categorie.active {
+        border: #94580E 5px solid;
+    }
+    
+    .item-cato{
+        display:flex;
+    }
+    /*endregion*/
+
+    body{
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+        background-image: url("images/achtergrond.svg");
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        margin-top:5%;
+    }
+
+    /*region Grid opmaak*/
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .grid-item {
+        background-color: #fff;
+        padding: 20px;
+        border: 5px solid #7F4E0E;
+        border-radius: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Verticaal centreren */
+        text-align: center;
+        position: relative;
+        margin-top:20%;
+        cursor:pointer;
+    }
+
+    .grid-item img {
+        max-width: 100%;
+        height: auto;
+        margin-top: -40%;
+    }
+    /*endregion*/
+
+    /*region product*/
+    .product-info {
+        font-weight:900;
+        font-size: 140%;
+    }
+
+    .product-info p{
+        white-space: nowrap;
+    }
+    /*endregion*/
+    
+    /*region media queries*/
+    @media (max-width: 768px) {
         .grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
         }
-        .grid-item {
-            background-color: #fff;
-            padding: 20px;
-            border: 5px solid #9A5C0D;
-            border-radius: 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Verticaal centreren */
-            text-align: center;
-            position: relative;
-            margin-top:20%;
-            cursor:pointer;
+    }
+
+    @media (max-width: 576px) {
+        .grid {
+            grid-template-columns: 1fr;
         }
-        .grid-item img {
-            max-width: 100%;
-            height: auto;
-            margin-top: -40%;
-            
-        }
-        .categorie.active {
-            border: #94580E 5px solid;
-        }
-        .product-info {
-            font-weight:900;
-        }
-        .product-info p{
-            white-space: nowrap;
-        }
-        @media (max-width: 768px) {
-            .grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        @media (max-width: 576px) {
-            .grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        .search{
-            text-align:center;
-        }
-        #myInput{
-            border:solid 1px #ccc;
-            color:#7B7B7B;
-            border-radius:40px;
-            width:40%
-        }
-        #foto{
-            margin-left:30%;
-        }
-    </style>
-    <body>
+    }
+    /*endregion*/
+
+    /*region search*/
+    .search{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin-top: 2%;
+        margin-bottom: 0;
+    }
+
+    #myInput{
+        border:solid 5px #48494B;
+        color:#7B7B7B;
+        border-radius:40px;
+        width:40%;
+        padding: 10px;
+    }
+
+    #foto{
+        max-width: 100%;
+        height: auto;
+        margin-right: 15px;
+    }
+    /*endregion*/
+
+    .winkelwagen{
+        height:auto;
+        width:7%; 
+        float:right; 
+        margin-top: 75px;
+        cursor: pointer;
+    }
+
+</style>
+
+<body>
+
 <div id='winkelwagen'>  
-    <img src="images/icons/winkelwagen.svg" style="height:auto; width:7%; float:right;">
-    </div>
-    <div class="item-cato">
-    <div class="categorie" data-category="alles">alles</div>
-    <div     class="categorie" data-category="1">broodjes</div>
-    <div class="categorie" data-category="2">drank</div>
-    <div class="categorie" data-category="3">snacks</div>
+    <img src="images/icons/winkelwagen.svg" class="winkelwagen">
+</div>
+
+<div class="item-cato">
+    <div class="categorie" data-category="alles">ALLES</div>
+    <div class="categorie" data-category="1">BROOD</div>
+    <div class="categorie" data-category="2">DRANK</div>
+    <div class="categorie" data-category="3">SNACKS</div>
 </div>
 
     <div class="search">
-        <img id="foto" src='images/vergrootglas.svg'>
+        <img id="foto" src='images/icons/vergrootglas.svg'>
         <input id="myInput" type="text" placeholder="Search..">
     </div>
 
@@ -291,12 +337,12 @@ winkelwagenIcon.addEventListener("click", showOverlay);
             @foreach ($products as $prod)
                 <div data-category='{{$prod["categorie_categorieid"]}}' class="grid-item">
                     <div class="grid-img">
-                        <img src="images/brood.png" alt="Afbeelding 1">
+                        <img src="images/prod_img/{{$prod['product_image']}}" alt="Afbeelding 1">
                     </div>
                     <div class="product-info">
                         <h3>{{$prod['productnaam']}}</h3>
                         <p>{{$prod['prijs']}} 🏷</p>
-                        <button onclick="addToCart(this)">Voeg toe</button>
+                        <button onclick="addToCart(this)">Voeg toe aan winkelwagen</button>
                     </div>
                 </div>
             @endforeach
@@ -308,7 +354,6 @@ winkelwagenIcon.addEventListener("click", showOverlay);
         <div id="popup-content"></div>
     </div>
 </div>
-   
 
 </body>
 </x-app-layout>

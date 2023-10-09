@@ -1,15 +1,16 @@
 <style>
     .navbar {
-    background:#F6A109;
-    }
-
-    .logo {
-        /* width: 100%; */
+        background:#F6A109;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        z-index: 100;
     }
 
     .alogo {
-        max-width: 50%;
-        height: 100px;
+        text-align: center;
+        display: table;
+        margin: auto;
     }
 
     #burgerbutton {
@@ -19,12 +20,12 @@
 
 <nav x-data="{ open: false }" class="navbar border-b border-gray-100">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
+    <div class="mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="">
             <!-- Settings Dropdown -->
                      
-            <div style='position:relative; float:right; margin-right:-10%;' class="hidden sm:flex sm:items-center sm:ml-6">
-                <x-dropdown align="right" width="48">
+            <div style='position:relative; float:left;' class="hidden sm:flex sm:items-center sm">
+                <x-dropdown align="left" width="48">
                     <x-slot name="trigger">
                     <button id="burgerbutton" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                     <svg class="h-12 w-12" stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -52,9 +53,9 @@
                     </x-slot>
                 </x-dropdown>
             </div>
-            <!-- <a href="/main" class="alogo"> -->
-                <x-application-logo class="logo" />
-            <!-- </a> -->
+            <a href="/main" class="alogo">
+                <x-application-logo />
+            </a>
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
                 <button id="burgerbutton" @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
