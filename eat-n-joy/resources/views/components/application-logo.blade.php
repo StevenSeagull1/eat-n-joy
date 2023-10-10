@@ -1,1 +1,1 @@
-<img src="images/eat-n-joy-logo.svg" width="64.75">
+<img src="images\broodje eat en joy zonder tekst.svg" width="90">

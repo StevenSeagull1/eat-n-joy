@@ -242,7 +242,7 @@ winkelwagenIcon.addEventListener("click", showOverlay);
         align-items: center; /* Verticaal centreren */
         text-align: center;
         position: relative;
-        margin-top:20%;
+        margin-top:16%;
         cursor:pointer;
     }
 
