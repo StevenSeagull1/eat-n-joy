@@ -192,7 +192,7 @@ winkelwagenIcon.addEventListener("click", showOverlay);
         border: #F6A30F 5px solid;
         border-radius: 40px;
         margin-left:8%;
-        margin-top: 75px;
+        margin-top: 95px;
         font-weight:900;
         height:10%;
         width:15%;
@@ -242,7 +242,7 @@ winkelwagenIcon.addEventListener("click", showOverlay);
         align-items: center; /* Verticaal centreren */
         text-align: center;
         position: relative;
-        margin-top:16%;
+        margin-top: 16%;
         cursor:pointer;
     }
 
@@ -285,7 +285,7 @@ winkelwagenIcon.addEventListener("click", showOverlay);
         justify-content: center;
         text-align: center;
         margin-top: 2%;
-        margin-bottom: 0;
+        margin-bottom: -2%;
     }
 
     #myInput{
@@ -303,21 +303,21 @@ winkelwagenIcon.addEventListener("click", showOverlay);
     }
     /*endregion*/
 
-    .winkelwagen{
+    /* .winkelwagen{
         height:auto;
         width:7%; 
         float:right; 
         margin-top: 75px;
         cursor: pointer;
-    }
+    } */
 
 </style>
 
 <body>
 
-<div id='winkelwagen'>  
+<!-- <div id='winkelwagen'>  
     <img src="images/icons/winkelwagen.svg" class="winkelwagen">
-</div>
+</div> -->
 
 <div class="item-cato">
     <div class="categorie" data-category="alles">ALLES</div>
