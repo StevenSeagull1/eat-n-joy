@@ -7,6 +7,12 @@
         z-index: 100;
     }
 
+    .container{
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-template-rows: 1;
+    }
+
     /* region logo */
     .logo {
         text-align: center;
@@ -40,15 +46,31 @@
         padding: 0.5rem;
     }
     /* endregion */
+
+    /*region media queries*/
+    @media (max-width: 768px) {
+        .container{
+            grid-template-columns: auto auto auto;
+            grid-template-rows: auto;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .container{
+            grid-template-columns: auto auto auto;
+            grid-template-rows: auto;
+        }
+    }
+    /*endregion*/
 </style>
 
 <nav x-data="{ open: false }" class="navbar border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div>
-        <div class="grid">
+        <div class="container">
             <!-- Settings Dropdown -->
                      
-            <div style='position:relative; float:left;' class="col hidden sm:flex sm:items-center sm">
+            <div style='position:relative; float:left;' class="sm:flex sm:items-center sm">
                 <x-dropdown align="left" width="48">
                     <x-slot name="trigger">
                     <button id="burgerbutton" class="inline-flex items-center justify-center p-2 rounded-md focus:outline-none transition duration-150 ease-in-out">
@@ -77,23 +99,23 @@
                     </x-slot>
                 </x-dropdown>
             </div>
-            <div class="logo col">
+            <div class="logo">
                 <a href="/main" class="alogo">
                     <x-application-logo />
                 </a>
             </div>
-            <div id='winkelwagen' class="winkelwagencontainer col">  
+            <div id='winkelwagen' class="winkelwagencontainer">  
                 <img src="images/icons/winkelwagen.svg" class="winkelwagen">
             </div>
             <!-- Hamburger -->
-            <div class="-mr-2 flex items-center sm:hidden">
+            <!-- <div class="-mr-2 flex items-center sm:hidden">
                 <button id="burgerbutton" @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md focus:outline-none transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
-            </div>
+            </div> -->
         </div>
     </div>
     
