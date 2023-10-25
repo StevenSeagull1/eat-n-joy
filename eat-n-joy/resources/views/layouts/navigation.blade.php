@@ -7,10 +7,10 @@
         z-index: 100;
     }
 
-    .container{
+    .containernav{
         display: grid;
         grid-template-columns: auto auto auto;
-        grid-template-rows: 1;
+        grid-template-rows: auto;
     }
 
     /* region logo */
@@ -49,14 +49,14 @@
 
     /*region media queries*/
     @media (max-width: 768px) {
-        .container{
+        .containernav{
             grid-template-columns: auto auto auto;
             grid-template-rows: auto;
         }
     }
 
     @media (max-width: 576px) {
-        .container{
+        .containernav{
             grid-template-columns: auto auto auto;
             grid-template-rows: auto;
         }
@@ -67,7 +67,7 @@
 <nav x-data="{ open: false }" class="navbar border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div>
-        <div class="container">
+        <div class="containernav">
             <!-- Settings Dropdown -->
                      
             <div style='position:relative; float:left;' class="sm:flex sm:items-center sm">
@@ -101,7 +101,7 @@
             </div>
             <div class="logo">
                 <a href="/main" class="alogo">
-                    <x-application-logo />
+                    <img src="images\broodje eat en joy zonder tekst.svg" width="120">
                 </a>
             </div>
             <div id='winkelwagen' class="winkelwagencontainer">  

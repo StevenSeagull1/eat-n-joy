@@ -137,10 +137,6 @@ function closePopup() {
     document.body.classList.remove("blur-background"); // Verwijder de klasse om de achtergrondvervaging te verwijderen
 }
 
-// Voeg een klikgebeurtenis toe aan het winkelwagen.svg-pictogram om de overlay weer te geven
-var winkelwagenIcon = document.querySelector("img[src='images/icons/winkelwagen.svg']");
-winkelwagenIcon.addEventListener("click", showOverlay);
-
     // Voeg event listeners toe aan de grid-items om de pop-up te openen
     var gridItems = document.querySelectorAll(".grid-item");
 
@@ -166,58 +162,58 @@ winkelwagenIcon.addEventListener("click", showOverlay);
         });
     });
 
-async function betaal(){
-    console.log("test")
-    var jsonObj = {};
-    for (var i = 0 ; i < winkelwagen.length; i++) {
-    jsonObj["item" + (i+1)] = winkelwagen[i];    
-}
-console.log(jsonObj)
-   await window.axios.post("ajax/bestelling", 
-    jsonObj
-)
-}
+    async function betaal(){
+            // console.log("test")
+            var jsonObj = {};
+            for (var i = 0 ; i < winkelwagen.length; i++) {
+            jsonObj["item" + (i+1)] = winkelwagen[i];    
+        }
+        // console.log(jsonObj)
+        await window.axios.post("ajax/bestelling", 
+            jsonObj
+        )
+    }
 </script>
 
 <style>
 
-/*region popup*/   
-.popup-container {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    background-color: #fff;
-    border: 5px solid black;
-    border-radius: 40px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-    padding: 20px;
+    /*region popup*/   
+    .popup-container {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        background-color: #fff;
+        border: 5px solid black;
+        border-radius: 40px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        padding: 20px;
         width:100%;
         height:100%;
-}
+    }
 
-.popup-content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Hier kun je de gewenste breedte instellen */
-  gap: 10px; /* Ruimte tussen de product containers */
-    text-align: center;
-  overflow-y:auto;
-  max-height:100%;
-}
+    .popup-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Hier kun je de gewenste breedte instellen */
+        gap: 10px; /* Ruimte tussen de product containers */
+        text-align: center;
+        overflow-y:auto;
+        max-height:100%;
+    }
 
-.product-container {
-  border: 1px solid #ccc;
-  padding: 10px;
-  /* text-align-c */
-}
+    .product-container {
+        border: 1px solid #ccc;
+        padding: 10px;
+        /* text-align-c */
+    }
 
 
-.popup-image {
-  max-width: 100%; /* Maak de afbeelding 100% van de breedte van het productcontainer */
-  height: auto; /* Behoud de juiste aspectverhouding */
-}
+    .popup-image {
+        max-width: 100%; /* Maak de afbeelding 100% van de breedte van het productcontainer */
+        height: auto; /* Behoud de juiste aspectverhouding */
+    }
 
     .popup-image {
         max-width: 100px; /* Stel de maximale breedte in zoals gewenst */
@@ -227,154 +223,191 @@ console.log(jsonObj)
         margin-right: auto;
         width: 50%;
     }
-.popup-content h3 {
-    font-weight: bold;
-}
 
-.popup-content p {
-    margin: 10px 0;
-}
+    .popup-content h3 {
+        font-weight: bold;
+    }
 
-.close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    cursor: pointer;
-}
-/*endregion*/
+    .popup-content p {
+        margin: 10px 0;
+    }
 
-/*region categorie*/
-.categorie{
-    border: #F6A30F 5px solid;
-    border-radius: 40px;
-    margin-left:8%;
-    margin-top: 95px;
-    font-weight:900;
-    height:10%;
-    width:15%;
-    text-align:center;
-    font-size:3vw;
-    cursor:pointer;
-}
+    .close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+    /*endregion*/
 
-.categorie.active {
-    border: #94580E 5px solid;
-}
+    /*region categorie*/
+    .categorie{
+        border: #F6A30F 5px solid;
+        border-radius: 40px;
+        margin-left:8%;
+        margin-top: 95px;
+        font-weight:900;
+        height:10%;
+        width:15%;
+        text-align:center;
+        font-size:3vw;
+        cursor:pointer;
+    }
 
-.item-cato{
-    display:flex;
-}
-/*endregion*/
+    .categorie.active {
+        border: #94580E 5px solid;
+    }
 
-body{
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f0f0;
-    background-image: url("images/achtergrond.svg");
-}
+    .item-cato{
+        display:flex;
+    }
+    /*endregion*/
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    margin-top:5%;
-}
+    body{
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+        background-image: url("images/achtergrond.svg");
+    }
 
-/*region Grid opmaak*/
-.grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        margin-top:5%;
+    }
 
-.grid-item {
-    background-color: #fff;
-    padding: 20px;
-    border: 5px solid #7F4E0E;
-    border-radius: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Verticaal centreren */
-    text-align: center;
-    position: relative;
+    /*region Grid opmaak*/
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .grid-item {
+        background-color: #fff;
+        padding: 20px;
+        border: 5px solid #7F4E0E;
+        border-radius: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Verticaal centreren */
+        text-align: center;
+        position: relative;
         margin-top:20%;
-    cursor:pointer;
-}
-
-.grid-item img {
-    max-width: 100%;
-    height: auto;
-    margin-top: -40%;
-}
-/*endregion*/
-
-/*region product*/
-.product-info {
-    font-weight:900;
-    font-size: 140%;
-}
-
-.product-info p{
-    white-space: nowrap;
-}
-/*endregion*/
-
-/*region media queries*/
-@media (max-width: 768px) {
-    .grid {
-        grid-template-columns: repeat(2, 1fr);
+        cursor:pointer;
     }
-}
 
-@media (max-width: 576px) {
-    .grid {
-        grid-template-columns: 1fr;
+    .grid-img {
+        max-width: 100%;
+        height: auto;
+        margin-top: -40%;
     }
-}
-/*endregion*/
+    /*endregion*/
 
-/*region search*/
-.search{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    margin-top: 2%;
-    margin-bottom: -2%;
-}
+    /*region product*/
+    .product-info {
+        font-weight:900;
+        font-size: 140%;
+    }
 
-#myInput{
-    border:solid 5px #48494B;
-    color:#7B7B7B;
-    border-radius:40px;
-    width:40%;
-    padding: 10px;
-}
+    .product-info p{
+        white-space: nowrap;
+        display: flex;
+        justify-content: center;
+        font-size: 200%;
+    }
 
-#foto{
-    max-width: 100%;
-    height: auto;
-    margin-right: 15px;
-}
-/*endregion*/
+    .prijskaart {
+        width: 15%;
+    }
 
-/* .winkelwagen{
-    height:auto;
-    width:7%; 
-    float:right; 
-    margin-top: 75px;
-    cursor: pointer;
-} */
+    .toevoegen_winkelwagenimg {
+        width: 25%;
+    }
+    /*endregion*/
+
+    /*region media queries*/
+    @media (min-width: 768px) {
+        #myInput {
+            width: 40%;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 576px) {
+        .grid {
+            grid-template-columns: 1fr;
+        }
+
+        .categorie {
+            margin-top: 100px;
+            font-size: 5vw;
+            width: 25%;
+            margin-left: 1%;
+        }
+
+        .p-2 {
+            margin-top: 0.5rem;
+            margin-left: 0.5rem;
+        }
+
+        #myInput {
+            width: 70%;
+        }
+
+        .prijskaart {
+            width: 10%;
+        }
+    }
+    /*endregion*/
+
+    /*region search*/
+    .search{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin-top: 2%;
+        margin-bottom: -2%;
+    }
+
+    #myInput{
+        border:solid 5px #48494B;
+        color:#7B7B7B;
+        border-radius:40px;
+        padding: 10px;
+    }
+
+    #foto{
+        max-width: 100%;
+        height: auto;
+        margin-right: 15px;
+    }
+    /*endregion*/
+
+    /* .winkelwagen{
+        height:auto;
+        width:7%; 
+        float:right; 
+        margin-top: 75px;
+        cursor: pointer;
+    } */
 
 </style>
 
 <body>
 
-<div id='winkelwagen'>  
-    <!-- <img src="images/icons/winkelwagen.svg" class="winkelwagen"> -->
-</div>
+<!-- <div id='winkelwagen'>  
+    <img src="images/icons/winkelwagen.svg" class="winkelwagen">
+</div> -->
 
 <div class="item-cato">
     <div class="categorie" data-category="alles">ALLES</div>
@@ -394,11 +427,11 @@ body{
             @foreach ($products as $prod)
                 <div  data-id='{{$prod["productid"]}}' data-category='{{$prod["categorie_categorieid"]}}' class="grid-item">
                     <div class="grid-img">
-                        <img src="images/prod_img/{{$prod['product_image']}}" alt="Afbeelding 1">
+                        <img src="images/prod_img/{{$prod['product_image']}}" alt="Product 1">
                     </div>
                     <div class="product-info">
                         <h3>{{$prod['productnaam']}}</h3>
-                        <p>{{$prod['prijs']}} </p>🏷
+                        <p><img class="prijskaart" src="images/icons/prijskaartje.svg">{{$prod['prijs']}} </p>
                         <button onclick="addToCart(this)">Voeg toe aan winkelwagen</button>
                     </div>
                 </div>
