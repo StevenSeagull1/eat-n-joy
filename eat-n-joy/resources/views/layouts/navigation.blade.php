@@ -60,6 +60,11 @@
             grid-template-columns: auto auto auto;
             grid-template-rows: auto;
         }
+
+        .p-2 {
+            margin-top: 0.5rem;
+            margin-left: 0.5rem;
+        }
     }
     /*endregion*/
 </style>
@@ -96,6 +101,7 @@
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
                         </form>
+                        <img src="images/mascotte verbaasd.svg" width="160" style="margin-top:50px">
                     </x-slot>
                 </x-dropdown>
             </div>

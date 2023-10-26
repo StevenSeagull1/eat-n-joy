@@ -1,4 +1,4 @@
-<x-app-layout>
+<!-- <x-app-layout>
     <style>
         .categorie{
             border: #F6A30F 5px solid;
@@ -147,4 +147,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-app-layout> -->

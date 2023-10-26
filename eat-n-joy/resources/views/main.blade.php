@@ -177,6 +177,13 @@ function closePopup() {
 
 <style>
 
+    @font-face {
+        font-family: 'SuperCorn';
+        font-style: normal;
+        font-weight: normal;
+        src: url('super-corn-cufonfonts-webfont/Super Corn.woff');
+    }
+
     /*region popup*/   
     .popup-container {
         display: none;
@@ -265,11 +272,18 @@ function closePopup() {
     /*endregion*/
 
     body{
-        font-family: Arial, sans-serif;
+        font-family: 'SuperCorn';
         margin: 0;
         padding: 0;
-        background-color: #f0f0f0;
+        background-color: #fff;
         background-image: url("images/achtergrond.svg");
+        background-position: right bottom;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 90%;
+        background-origin: content-box;
+        height: 100vh;
+        width: 100%;
     }
 
     .container {
@@ -290,7 +304,7 @@ function closePopup() {
         background-color: #fff;
         padding: 20px;
         border: 5px solid #7F4E0E;
-        border-radius: 40px;
+        border-radius: 150px;
         display: flex;
         flex-direction: column;
         align-items: center; /* Verticaal centreren */
@@ -316,56 +330,15 @@ function closePopup() {
     .product-info p{
         white-space: nowrap;
         display: flex;
-        justify-content: center;
-        font-size: 200%;
+        font-size: 250%;
     }
 
     .prijskaart {
-        width: 15%;
+        width: 20%;
     }
 
     .toevoegen_winkelwagenimg {
-        width: 25%;
-    }
-    /*endregion*/
-
-    /*region media queries*/
-    @media (min-width: 768px) {
-        #myInput {
-            width: 40%;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    @media (max-width: 576px) {
-        .grid {
-            grid-template-columns: 1fr;
-        }
-
-        .categorie {
-            margin-top: 100px;
-            font-size: 5vw;
-            width: 25%;
-            margin-left: 1%;
-        }
-
-        .p-2 {
-            margin-top: 0.5rem;
-            margin-left: 0.5rem;
-        }
-
-        #myInput {
-            width: 70%;
-        }
-
-        .prijskaart {
-            width: 10%;
-        }
+        width: 40%;
     }
     /*endregion*/
 
@@ -385,7 +358,7 @@ function closePopup() {
         border-radius:40px;
         padding: 10px;
     }
-
+    
     #foto{
         max-width: 100%;
         height: auto;
@@ -393,21 +366,49 @@ function closePopup() {
     }
     /*endregion*/
 
-    /* .winkelwagen{
-        height:auto;
-        width:7%; 
-        float:right; 
-        margin-top: 75px;
-        cursor: pointer;
-    } */
-
+    /*region media queries*/
+    @media (min-width: 768px) {
+        #myInput {
+            width: 40%;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .grid {
+            grid-template-columns: 1fr;
+        }
+    
+        .categorie {
+            margin-top: 100px;
+            font-size: 6vw;
+            width: 22%;
+            margin-left: 2.5%;
+        }
+    
+        #myInput {
+            width: 70%;
+        }
+    
+        .prijskaart {
+            width: 25%;
+            margin-left: 4%;
+        }
+    
+        .toevoegen_winkelwagenimg {
+            width: 40%;
+        }
+    }
+    /*endregion*/
+    
 </style>
 
 <body>
-
-<!-- <div id='winkelwagen'>  
-    <img src="images/icons/winkelwagen.svg" class="winkelwagen">
-</div> -->
 
 <div class="item-cato">
     <div class="categorie" data-category="alles">ALLES</div>
@@ -431,8 +432,10 @@ function closePopup() {
                     </div>
                     <div class="product-info">
                         <h3>{{$prod['productnaam']}}</h3>
-                        <p><img class="prijskaart" src="images/icons/prijskaartje.svg">{{$prod['prijs']}} </p>
-                        <button onclick="addToCart(this)">Voeg toe aan winkelwagen</button>
+                        <div style="display:flex;justify-content:space-between;">
+                            <p><img class="prijskaart" src="images/icons/prijskaartje.svg">{{$prod['prijs']}} </p>
+                            <button onclick="addToCart(this)" style="justify-content:center;display:flex;align-items:center;"><img class="toevoegen_winkelwagenimg" src="images/icons/toevoegen_winkelwagen.svg"></button>
+                        </div>
                     </div>
                 </div>
             @endforeach

@@ -8,14 +8,28 @@
         <title>eat n joy</title>
 
         <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <!-- <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" /> -->
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
 
     <style>
+
+        @font-face {
+            font-family: 'SuperCorn';
+            font-style: normal;
+            font-weight: normal;
+            src: url('super-corn-cufonfonts-webfont/Super Corn.woff');
+        }
+
+        body {
+            font-family: 'SuperCorn';
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
 
         @media (max-width: 576px) {
             .pt-6 {
@@ -25,8 +39,8 @@
         
     </style>
 
-    <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+    <body class="text-gray-900 antialiased">
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
             <div>
                 <!-- <a href="/"> -->
                     <x-application-logo class="w-20 h-20 fill-current text-gray-500" />

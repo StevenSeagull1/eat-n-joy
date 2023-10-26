@@ -1,5 +1,17 @@
 @props(['align' => 'right', 'width' => '48', 'contentClasses' => 'py-1 bg-white'])
 
+<style>
+    .bg-white {
+        background-color: #F6A109;
+        border-top: solid 3px #7F4E0E;
+        border-radius: 3px;
+    }
+
+    .w-48 {
+        width: 17rem;
+    }
+</style>
+
 @php
 switch ($align) {
     case 'left':
