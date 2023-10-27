@@ -3,12 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bestelling;
-use App\Models\BestellingRegel;
+use App\Models\Bestelling_has_product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class BestellingController extends Controller
 {
+    public function show()
+    {
+        // Haal alle producten op met hun gerelateerde categorieën
+        $user = Auth::user();
+        $data = $user->bestellingen;
+
+        return view('bestelling', ['bestelling' => $data]);
+        }
     public function store(Request $request)
     {
         $bestelling = new Bestelling();
@@ -16,10 +24,10 @@ class BestellingController extends Controller
         $bestelling->save();
 
         foreach (($request->json()->all() ?? []) as $key => $value) {
-            $bestellingRegel = new BestellingRegel();
-            $bestellingRegel->bestelling_bestellingid=$bestelling->id;
-            $bestellingRegel->product_productid=$value['id'];
-            $bestellingRegel->save();
+            $Bestelling_has_product = new Bestelling_has_product();
+            $Bestelling_has_product->bestelling_bestellingid=$bestelling->id;
+            $Bestelling_has_product->product_productid=$value['id'];
+            $Bestelling_has_product->save();
         }
     }
 }

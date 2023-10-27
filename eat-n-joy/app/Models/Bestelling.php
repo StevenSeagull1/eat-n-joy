@@ -9,5 +9,11 @@ class Bestelling extends Model
     use HasFactory;
     protected $table ="bestelling";
     public $timestamps = false;
+    public function klant()
+    {
+        return $this->belongsTo(User::class, 'klantID');
+    }
     
+
+
 }
