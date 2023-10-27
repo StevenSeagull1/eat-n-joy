@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
     productContainer.className = 'product-container';
 
     // Voeg de productnaam en prijs toe aan het productContainer
-    productContainer.innerHTML = winkelwagen[i].productnaam + " " + winkelwagen[i].prijs;
+    productContainer.innerHTML = winkelwagen[i].productnaam + " €" + winkelwagen[i].prijs;
 
     // Voeg de afbeelding toe aan het productContainer
     var afbeeldingURL = winkelwagen[i].afbeelding.src;
@@ -105,8 +105,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
   // Voeg de totale prijs toe aan de popupContent
-  popupContent.innerHTML += "<hr><b>Totale prijs:</b> " + totalePrijs.toFixed(2);
-  popupContent.innerHTML += "<a href='/bestelling'><hr><button onclick='betaal()'>betalen</button></a> ";
+  popupContent.innerHTML += "<hr><b>Totale prijs:</b> €" + totalePrijs.toFixed(2);
+  popupContent.innerHTML += "<hr><button onclick='betaal()'>Betalen</button> ";
+  popupContent.innerHTML += "<img src='images/mascotte verrast.svg'>";
 
     popup.style.display = "block";
     document.body.classList.add("blur-background");
@@ -163,15 +164,17 @@ function closePopup() {
     });
 
     async function betaal(){
-            // console.log("test")
-            var jsonObj = {};
-            for (var i = 0 ; i < winkelwagen.length; i++) {
-            jsonObj["item" + (i+1)] = winkelwagen[i];    
+        if (winkelwagen.length > 0) {
+                var jsonObj = {};
+                for (var i = 0 ; i < winkelwagen.length; i++) {
+                jsonObj["item" + (i+1)] = winkelwagen[i];    
+            }
+                    
+            await window.axios.post("ajax/bestelling", 
+                jsonObj
+            )
+            window.location.href = '/bestelling';
         }
-        // console.log(jsonObj)
-        await window.axios.post("ajax/bestelling", 
-            jsonObj
-        )
     }
 </script>
 
@@ -280,7 +283,7 @@ function closePopup() {
         background-position: right bottom;
         background-repeat: no-repeat;
         background-attachment: fixed;
-        background-size: 90%;
+        background-size: 68%;
         background-origin: content-box;
         height: 100vh;
         width: 100%;

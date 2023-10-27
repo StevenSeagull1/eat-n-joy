@@ -23,7 +23,7 @@ Route::get('/', function () {
 
 Route::get('main',[ProductsController::class,'show']);
 
-Route::get('bestelling',[BestellingController::class,'show']);
+Route::get('bestelling',[BestellingController::class,'show'])->name('bestelling.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
