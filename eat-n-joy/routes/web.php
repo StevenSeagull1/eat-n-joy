@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\BestellingController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\Routing\Loader\Configurator\Traits\RouteTrait;
@@ -21,6 +22,8 @@ Route::get('/', function () {
 });
 
 Route::get('main',[ProductsController::class,'show']);
+
+Route::get('bestelling',[BestellingController::class,'show']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

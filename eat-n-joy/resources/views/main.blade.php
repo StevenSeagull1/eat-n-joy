@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Voeg de totale prijs toe aan de popupContent
   popupContent.innerHTML += "<hr><b>Totale prijs:</b> " + totalePrijs.toFixed(2);
-  popupContent.innerHTML += "<hr><button onclick='betaal()'>betalen</button> ";
+  popupContent.innerHTML += "<a href='/bestelling'><hr><button onclick='betaal()'>betalen</button></a> ";
 
     popup.style.display = "block";
     document.body.classList.add("blur-background");
