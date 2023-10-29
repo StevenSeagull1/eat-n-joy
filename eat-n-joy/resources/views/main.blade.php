@@ -164,8 +164,11 @@ function closePopup() {
     });
 
     async function betaal(){
-        if (winkelwagen.length > 0) {
-                var jsonObj = {};
+        if (winkelwagen.length <= 0) {
+            alert('je winkelwagen is leeg')
+            return;      
+        }
+        var jsonObj = {};
                 for (var i = 0 ; i < winkelwagen.length; i++) {
                 jsonObj["item" + (i+1)] = winkelwagen[i];    
             }
@@ -174,7 +177,6 @@ function closePopup() {
                 jsonObj
             )
             window.location.href = '/bestelling';
-        }
     }
 </script>
 
