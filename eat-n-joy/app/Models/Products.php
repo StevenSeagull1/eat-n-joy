@@ -14,5 +14,12 @@ class Products extends Model
     {
         return $this->belongsTo(Category::class, 'categorie_categorieid');
     }
+    // Product.php
+    public function bestellingen()
+    {
+        return $this->belongsToMany(Bestelling::class, 'bestelling_has_product', 'product_productid', 'bestelling_bestellingid');
+    }
+    
+
 }
 

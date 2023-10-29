@@ -21,9 +21,6 @@ Route::get('/', function () {
     return redirect(route('login'));
 });
 
-Route::get('main',[ProductsController::class,'show']);
-
-Route::get('bestelling',[BestellingController::class,'show'])->name('bestelling.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -33,6 +30,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('main',[ProductsController::class,'show']);
+    Route::get('bestelling',[BestellingController::class,'show'])->name('bestelling.show');
 });
 
 require __DIR__.'/auth.php';

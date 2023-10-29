@@ -1,3 +1,14 @@
+<script>
+    
+    document.addEventListener("DOMContentLoaded", function () {
+        var imgWinkel = document.getElementById("imgwinkel")
+    const currentUrl = window.location.href; 
+    console.log(currentUrl);
+    if (currentUrl.includes("bestelling")){
+        console.log('imgWinkel')
+        imgWinkel.style.display = "none";
+}});
+</script>   
 <style>
     .navbar {
         background:#F6A109;
@@ -115,8 +126,9 @@
                 </a>
             </div>
             <div id='winkelwagen' class="winkelwagencontainer">  
-                <img src="images/icons/winkelwagen.svg" class="winkelwagen">
+                <img id='imgwinkel' src="images/icons/winkelwagen.svg" class="winkelwagen">
             </div>
+            
             <!-- Hamburger -->
             <!-- <div class="-mr-2 flex items-center sm:hidden">
                 <button id="burgerbutton" @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md focus:outline-none transition duration-150 ease-in-out">
