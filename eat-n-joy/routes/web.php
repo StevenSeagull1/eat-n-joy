@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('main',[ProductsController::class,'show']);
     Route::get('bestelling',[BestellingController::class,'show'])->name('bestelling.show');
+    Route::get('kantine',[BestellingController::class,'show'])->name('bestelling.showAll');
 });
 
 require __DIR__.'/auth.php';
